@@ -1,0 +1,55 @@
+<div class="login-page">
+  <div class="login-card">
+    <div class="login-header">
+      <h2>{{ isLoginMode ? 'Login to KBTU L&F' : 'Create Account' }}</h2>
+      <p class="subtitle">{{ isLoginMode ? 'Enter your university credentials' : 'Register for the Lost & Found service' }}</p>
+    </div>
+
+    <form (ngSubmit)="onLogin()">
+      <div class="input-group">
+        <label>Email Address (@kbtu.kz)</label>
+        <input 
+          type="email" 
+          name="email" 
+          [(ngModel)]="loginData.email" 
+          placeholder="e.g. name@kbtu.kz" 
+          required>
+      </div>
+
+      <div class="input-group">
+        <label>Student ID</label>
+        <input 
+          type="text" 
+          name="studentId" 
+          [(ngModel)]="loginData.studentId" 
+          placeholder="e.g. 24B030XXX" 
+          required>
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input 
+          type="password" 
+          name="password" 
+          [(ngModel)]="loginData.password" 
+          placeholder="••••••••" 
+          required>
+      </div>
+
+      @if (errorMessage) {
+        <div class="error-message">
+          <span class="error-icon">⚠️</span> {{ errorMessage }}
+        </div>
+      }
+
+      <button type="submit" class="btn-login-submit">{{ isLoginMode ? 'SIGN IN' : 'REGISTER' }}</button>
+    </form>
+
+    <div class="login-footer">
+      <div (click)="isLoginMode = !isLoginMode" style="cursor: pointer; color: #007bff; margin-bottom: 10px; font-weight: 500;">
+        {{ isLoginMode ? "Don't have an account? Sign Up" : "Already have an account? Log In" }}
+      </div>
+      <span>Authorized access only for KBTU students.</span>
+    </div>
+  </div>
+</div>

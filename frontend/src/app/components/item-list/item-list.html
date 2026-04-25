@@ -1,0 +1,94 @@
+<div class="main-content">
+  <div class="filter-panel">
+    <div class="filter-box">
+      <label>Search by text</label>
+      <input type="text" #searchInput placeholder="Title or description">
+    </div>
+
+    <div class="filter-box">
+      <label>Item Type</label>
+      <select #typeSelect>
+        <option value="">All</option>
+        <option value="Lost">Lost</option>
+        <option value="Found">Found</option>
+      </select>
+    </div>
+
+    <div class="filter-box">
+      <label>Categories</label>
+      <select #categorySelect>
+        <option value="">All</option>
+        <option value="1">Electronics</option>
+        <option value="2">Documents</option>
+        <option value="3">Keys</option>
+        <option value="4">Clothing</option>
+        <option value="5">Other</option>
+      </select>
+    </div>
+
+    <div class="filter-btns">
+      <button class="search-apply" (click)="applyFilters(searchInput.value, typeSelect.value, categorySelect.value)">
+        Search
+      </button>
+      <button class="reset-btn" (click)="resetFilters()" title="Reset filters">
+        <img src="assets/reset-icon.png" alt="Сброс" class="reset-icon-img">
+      </button>
+    </div>
+  </div>
+
+  <div class="items-grid">
+    @if (allItems.length > 0) {
+      @for (item of items; track item.id) {
+        <div class="item-card-flat" [class.is-returned]="item.status === 'returned'" (click)="viewItemDetails(item.id)" style="cursor: pointer;">
+          <div class="item-thumb">
+            <img [src]="'http://127.0.0.1:8000' + item.images[0].image" *ngIf="item.images && item.images.length > 0">
+          </div>
+
+          <div class="item-data">
+            <div class="item-top">
+              <span class="item-name">{{item.title}}</span>
+              <span class="status-tag" [ngClass]="{
+                'lost': item.type === 'Lost',
+                'found': item.type === 'Found'
+              }">
+                {{ item.type }}
+              </span>
+            </div>
+            <div class="item-bottom">
+              <p>Category: 
+                {{ 
+                  item.category == '1' ? 'Electronics' :
+                  item.category == '2' ? 'Documents' :
+                  item.category == '3' ? 'Keys' :
+                  item.category == '4' ? 'Clothing' :
+                  'Other'
+                }}
+              </p>
+              <p>Location: {{item.location}}</p>
+              <p>Posted by: {{ item.postedBy }}</p>
+              <p>Date: {{ item.date }}</p>
+              @if (item.status === 'returned') {
+                  <p class="returned-text">✅ Item successfully returned!</p>
+              }
+            </div>
+          </div>
+        </div>
+      }
+      
+      @if (items.length === 0) {
+        <div class="no-results">
+          <div class="no-results-inner">
+            <span class="no-results-emoji">🔎</span>
+            <h3>Nothing found</h3>
+            <p>There are no items matching your search. Try resetting your filters.</p>
+            <button class="btn-clear-filters" (click)="resetFilters()">Reset filters</button>
+          </div>
+        </div>
+      }
+    } @else {
+      <div class="loading-state">
+        <p>Loading KBTU announcements...</p>
+      </div>
+    }
+  </div>
+</div>

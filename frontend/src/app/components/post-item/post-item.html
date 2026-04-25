@@ -1,0 +1,77 @@
+<div class="post-page">
+  <div class="post-card">
+    <h2 class="form-title">Submit a New Request</h2>
+
+    <form class="request-form" (ngSubmit)="submitForm()">
+      
+      <div class="form-section">
+        <span class="section-number">1. Item Type</span>
+        <div class="radio-group">
+          <label class="radio-label">
+            <input type="radio" name="itemType" value="lost" [(ngModel)]="status"> 
+            I lost an item
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="itemType" value="found" [(ngModel)]="status"> 
+            I found an item
+          </label>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <span class="section-number">2. Details</span>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Item Name</label>
+            <input type="text" name="title" [(ngModel)]="title" placeholder="e.g. iPhone 17 Pro" required>
+          </div>
+          <div class="input-group">
+            <label>Category</label>
+            <select name="category" [(ngModel)]="category">
+              <option value="1">Electronics</option>
+              <option value="2">Documents</option>
+              <option value="3">Keys</option>
+              <option value="4">Clothing</option>
+              <option value="5">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-group full-width">
+          <label>Description</label>
+          <textarea name="description" [(ngModel)]="description" placeholder="Provide as much detail as possible"></textarea>
+        </div>
+
+        <div class="input-row">
+          <div class="input-group">
+            <label>Location</label>
+            <input type="text" name="location" [(ngModel)]="location" placeholder="e.g. Library, 3rd floor">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <span class="section-number">3. Photos</span>
+        <div class="upload-area" (click)="fileInput.click()">
+          <input type="file" #fileInput (change)="onFilesSelected($event)" accept="image/*" multiple style="display: none;">
+          <div class="upload-placeholder">
+            <span class="icon">📤</span>
+            <p>Click to upload one or more photos</p>
+          </div>
+        </div>
+
+        <div class="previews-grid" *ngIf="imagePreviews.length > 0">
+          <div class="preview-item" *ngFor="let preview of imagePreviews; let i = index">
+            <img [src]="preview" class="img-preview">
+            <button type="button" class="remove-btn-small" (click)="removeImage(i, $event)">×</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section no-border">
+        <span class="section-number">4. Confirm</span>
+        <button type="submit" class="btn-post">POST REQUEST</button>
+      </div>
+    </form>
+  </div>
+</div>

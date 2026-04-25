@@ -1,0 +1,119 @@
+.main-content { padding: 20px; background-color: #0b131e; min-height: 100vh; }
+
+.filter-panel {
+  background-color: #15202b;
+  border: 1px solid #2d3d4f;
+  padding: 15px;
+  display: flex;
+  gap: 15px;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+
+.filter-box { display: flex; flex-direction: column; gap: 5px; flex: 1; }
+
+.filter-box label { font-size: 12px; color: #fff; }
+
+.filter-btns {
+  display: flex;
+  gap: 8px;
+  align-items: stretch; 
+}
+
+.search-apply {
+  background-color: #34495e;
+  color: white;
+  border: 1px solid #4a607b;
+  padding: 0 20px; 
+  height: 38px;    
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.reset-btn {
+  background-color: #1a2634; 
+  border: 1px solid #4a607b; 
+  border-radius: 4px;
+  width: 38px;            
+  height: 38px;            
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;    
+}
+
+.reset-icon-img {
+  width: 100%;           
+  height: 100%;
+  object-fit: cover; 
+}
+
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 10px;
+}
+
+.item-card-flat {
+  background-color: #15202b;
+  border: 1px solid #2d3d4f;
+  display: flex;
+  height: 85px;
+  padding: 5px;
+}
+
+.clickable-card {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.clickable-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.item-thumb { width: 80px; background: #0b131e; display: flex; align-items: center; justify-content: center; }
+
+.item-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+.item-data { flex: 1; padding-left: 10px; display: flex; flex-direction: column; justify-content: center; }
+
+.item-top { display: flex; justify-content: space-between; margin-bottom: 5px; }
+
+.item-name { font-weight: bold; font-size: 14px; }
+
+.status-tag { 
+    background: #34495e; 
+    font-size: 10px; 
+    padding: 4px 9px; 
+    border-radius: 12px; 
+    text-transform: uppercase;font-weight:bold }
+
+
+.status-tag.lost { background: #e74c3c; }     
+.status-tag.found { background: #e2e86e; }    
+.status-tag.returned { background: #27ae60; }  
+
+.returned-text { color: #27ae60 !important; font-weight: bold; margin-top: 3px !important; }
+
+
+.item-bottom p { margin: 0; font-size: 11px; color: #7f8c8d; }
+
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 50px;
+  color: #8899a6;
+}
+.btn-clear-filters {
+  background: transparent;
+  border: 1px solid #1d9bf0;
+  color: #1d9bf0;
+  padding: 8px 16px;
+  border-radius: 20px;
+  margin-top: 15px;
+  cursor: pointer;
+}
